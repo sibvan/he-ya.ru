@@ -1,0 +1,44 @@
+.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100dvh - 56px - 24px);
+}
+.not-found__description {
+  color: var(--color-midnight);
+  font-family: var(--font-noto);
+  font-size: 16px;
+  margin-top: 16px;
+}
+
+.not-found__h1 {
+  margin-top: 24px;
+}
+
+.not-found__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.not-found__img {
+  width: calc(100dvw / 1710 * 260);
+}
+
+@media (max-width: 1367px) {
+  .not-found__img {
+    width: calc(100dvw / 4);
+  }
+}
+
+@media (max-width: 896px) {
+  .not-found__img {
+    width: calc(100dvw / 3);
+  }
+}
+
+@media (max-width: 580.5px) {
+  .not-found__img {
+    width: calc(100dvw / 3 * 2);
+  }
+}

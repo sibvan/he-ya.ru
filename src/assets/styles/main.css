@@ -1,0 +1,264 @@
+/* imports */
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100..900&family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap");
+@import url("home.css");
+@import url("course.css");
+@import url("course-list.css");
+@import url("not-found.css");
+
+/* imports */
+
+/* vars */
+:root {
+  --color-midnight: #000000;
+  --color-stone: #B2B2B2;
+  --color-grey: #E9E9E9;
+  --color-silver: #F5F5F5;
+  --color-white: #FFFFFF;
+  --color-orange: #f34a23;
+
+  --font-tiktok: "TikTok Sans", sans-serif;
+  --font-noto: "Noto Sans", sans-serif;
+}
+/* vars */
+
+/* common */
+
+a {
+  text-decoration: none;
+}
+
+* {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+body {
+  background: #e4e2e3;
+  padding: 12px;
+  box-sizing: border-box;
+  max-width: 1710px;
+  min-width: 393px;
+  margin: 0 auto;
+}
+
+.container {
+  width: 100%;
+}
+
+/* common */
+
+/* header */
+
+.header {
+  display: flex;
+  background: var(--color-white);
+  padding: 16px 20px 16px 16px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.header_round {
+  justify-content: space-between;
+  border-radius: 20px;
+}
+
+/* header */
+
+/* logo */
+
+.logo {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo__title {
+  color: var(--color-midnight);
+  font-family: var(--font-tiktok);
+  font-size: 24px;
+  display: flex;
+  font-weight: 900;
+}
+
+.logo:hover .logo__title_italic {
+  transform: skew(14deg) translateX(-0.1em);
+}
+
+.logo__subtitle {
+  color: var(--color-stone);
+  font-family: var(--font-noto);
+  font-size: 12px;
+}
+
+.logo__title_italic {
+  font-style: italic;
+  will-change: transform;
+  transition: transform 0.2s ease-in-out;
+  width: 0.5em;
+}
+
+.logo_home {
+  flex-direction: column;
+}
+
+.logo__title_home {
+  font-size: 51px;
+}
+
+.logo__subtitle_home {
+  font-size: 16px;
+}
+
+/* logo */
+
+/* titles */
+.h1 {
+  color: var(--color-midnight);
+  font-family: var(--font-tiktok);
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.h1_home {
+  font-weight: 400;
+  text-align: center;
+}
+
+.h1_color-stone {
+  color: var(--color-stone);
+}
+
+.h2 {
+  color: var(--color-midnight);
+  font-family: var(--font-tiktok);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 120%;
+}
+/* titles */
+
+/* buttons */
+
+.button {
+  padding: 16px 24px;
+  border-radius: 100px;
+  background: var(--color-midnight);
+  color: var(--color-white);
+  font-family: var(--font-noto);
+  font-size: 16px;
+  font-weight: 700;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  display: inline-block;
+  box-sizing: border-box;
+  box-shadow: inset 0px 0px 0px 2px var(--color-midnight);
+}
+
+.button:hover {
+  color: var(--color-midnight);
+  background: transparent;
+}
+
+.button-icon {
+  color: var(--color-midnight);
+  font-family: var(--font-noto);
+  font-size: 16px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+}
+/* buttons */
+
+/* menu */
+.menu {
+  display: flex;
+  gap: 24px;
+}
+
+.menu__item {
+  color: var(--color-midnight);
+  font-family: var(--font-noto);
+  font-size: 16px;
+  position: relative;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.2s ease-in-out;
+}
+
+.menu__item:hover {
+  text-decoration-color: currentColor;
+}
+
+.menu__item_active::after {
+  content: url(/src/assets/icons/TriangleIcon.svg);
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -16px;
+}
+/* menu */
+
+/* checkbox */
+
+.checkbox {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox:hover .checkbox__indicator {
+  background-color: var(--color-stone);
+}
+
+.checkbox__text {
+  color: var(--color-midnight);
+  font-family: var(--font-noto);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.checkbox__indicator {
+  appearance: none;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  margin: 0px;
+  background: transparent;
+  border-radius: 6px;
+  box-sizing: border-box;
+  outline: 2px solid var(--color-midnight);
+  outline-offset: -5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.checkbox__indicator:checked::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: 0;
+  bottom: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--color-midnight) url("/src/assets/icons/CheckboxIcon.svg")
+    no-repeat center;
+}
+
+/* checkbox */
+
+/* media */
+
+@media (max-width: 580.5px) {
+  .h1 {
+    font-size: 34px;
+  }
+}
+
+/* media */
