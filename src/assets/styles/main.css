@@ -35,7 +35,7 @@ a {
 }
 
 body {
-  background: #e4e2e3;
+  background: var(--color-grey);
   padding: 12px;
   box-sizing: border-box;
   max-width: 1710px;
