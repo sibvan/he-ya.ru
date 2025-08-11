@@ -50,7 +50,7 @@
           <li class="features__feature">
             <p class="features__title">Формат</p>
             <p class="features__description">{{ getFeatures(course.format)
-              }}</p>
+            }}</p>
           </li>
         </ul>
         <ul class="features__item">
@@ -66,7 +66,7 @@
             <p class="features__title">Профессия</p>
             <p class="features__description">{{
               getFeatures(course.profession)
-              }} </p>
+            }} </p>
           </li>
         </ul>
         <ul v-if="course.payment" class="features__item">
@@ -118,10 +118,22 @@ const hasError = ref(false);
 
 
 
-const getFeatures = (value) => Array.isArray(value) ? value.join(", ") : value;
+const getFeatures = (value) => {
+  let res = "";
+  if (Array.isArray(value)) {
+    res = value.join(", ");
+  } else {
+    res = value;
+  }
+  return makeFirstLetterCapital(res);
+}
 
 const getLogoUrl = (course) => {
   return assetsUrl + (course.school.logo?.path || "");
+}
+
+const makeFirstLetterCapital = (str) => {
+  return str[0].toUpperCase() + str.slice(1);
 }
 
 const getStarIcon = (order, grade) => {
