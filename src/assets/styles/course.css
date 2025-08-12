@@ -29,6 +29,7 @@
 
 .course_loading {
   animation: course_blink 1s infinite alternate ease-in-out 0s;
+  box-shadow: none;
 }
 
 @keyframes course_blink {
@@ -51,6 +52,7 @@
 
 .course_error {
   background: color-mix(in oklab, var(--color-orange) 10%, transparent);
+  box-shadow: none;
 }
 
 .course__description {
