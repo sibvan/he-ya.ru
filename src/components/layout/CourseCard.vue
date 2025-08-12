@@ -15,9 +15,13 @@
 
     </div>
     <div class="course-card__btm">
-      <div class="course-card__price-block">
+      <div v-if="price !== 0" class="course-card__price-block">
         <p class="course-card__price-title">от {{ formatPrice(price) }} ₽</p>
         <p class="course-card__price-description">за {{ period }}</p>
+      </div>
+      <div v-else class="course-card__price-block">
+        <p class="course-card__price-description">Бесплатный</p>
+        <p class="course-card__price-description">{{ period }}</p>
       </div>
       <BaseButtonIcon class="button-icon_right" icon="right">Подробнее<br>о курсе</BaseButtonIcon>
 
