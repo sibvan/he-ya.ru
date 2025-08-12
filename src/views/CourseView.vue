@@ -18,10 +18,13 @@
         </div>
       </div>
       <div class="course__btm">
-        <div class="course__cost">
+        <div v-if="course.cost.price !== 0" class="course__cost">
           <p class="course__price"><span class="course__price_from">от</span> {{
-            price }}</p>
+            formatPrice(course.cost.price) }}</p>
           <p class="course__period">рублей<br>за {{ course.cost.period }}</p>
+        </div>
+        <div v-else class="course__cost">
+   <p class="course__price">Бесплатно</p>
         </div>
         <BaseButton text="Подробнее на сайте школы" :href="course.link" />
       </div>
@@ -29,7 +32,7 @@
     </main>
     <aside class="course-aside">
       <div class="rating">
-        <p class="rating__grade">{{ rating }}</p>
+        <p class="rating__grade">{{ formatPrice(course.school.rating.grade) }}</p>
         <div class="rating__stars">
           <img v-for="n in 5" :key="n" :src="getStarIcon(n, course.school.rating.grade)" alt="Звезда рейтинга">
         </div>
@@ -50,7 +53,7 @@
           <li class="features__feature">
             <p class="features__title">Формат</p>
             <p class="features__description">{{ getFeatures(course.format)
-              }}</p>
+            }}</p>
           </li>
         </ul>
         <ul class="features__item">
@@ -66,7 +69,7 @@
             <p class="features__title">Профессия</p>
             <p class="features__description">{{
               getFeatures(course.profession)
-              }} </p>
+            }} </p>
           </li>
         </ul>
         <ul v-if="course.payment" class="features__item">
@@ -136,6 +139,8 @@ const makeFirstLetterCapital = (str) => {
   return str[0].toUpperCase() + str.slice(1);
 }
 
+const formatPrice = (price) => price.toLocaleString("ru-RU");
+
 const getStarIcon = (order, grade) => {
 
   const ratingEmpty = icons.emptyRating;
@@ -183,8 +188,6 @@ const course = computed(() => {
 });
 
 
-const price = computed(() => course.value.cost.price.toLocaleString("ru-RU"));
-const rating = computed(() => course.value.school.rating.grade.toLocaleString("ru-RU"));
 
 
 
