@@ -50,7 +50,7 @@
           <li class="features__feature">
             <p class="features__title">Формат</p>
             <p class="features__description">{{ getFeatures(course.format)
-            }}</p>
+              }}</p>
           </li>
         </ul>
         <ul class="features__item">
@@ -66,7 +66,7 @@
             <p class="features__title">Профессия</p>
             <p class="features__description">{{
               getFeatures(course.profession)
-            }} </p>
+              }} </p>
           </li>
         </ul>
         <ul v-if="course.payment" class="features__item">
@@ -79,7 +79,7 @@
     </aside>
   </div>
   <div v-else-if="isLoading || hasError" class="course-wrapper">
-    <main class="course course_loading">
+    <main :class="['course', { 'course_loading': isLoading, 'course_error': hasError }]">
 
       <div class="course__top">
         <div class="course__tags">
@@ -93,7 +93,7 @@
 
 
     </main>
-    <aside class="course-aside course_loading"></aside>
+    <aside :class="['course-aside', { 'course_loading': isLoading, 'course_error': hasError }]"></aside>
   </div>
 
 </template>
