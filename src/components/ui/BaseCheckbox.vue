@@ -1,7 +1,7 @@
 <template>
   <div class="checkbox">
     <input v-model="model" class="checkbox__indicator" type="checkbox" :id="id" :value="value">
-    <label class="checkbox__text" :for="id">{{ text }}</label>
+    <label class="checkbox__text" :for="id">{{ text }}<span v-if="number" class="checkbox__text_number">&nbsp;&nbsp;{{ number }}</span></label>
   </div>
 </template>
 
@@ -21,6 +21,10 @@ const props = defineProps({
   value: {
     type: String,
     required: true
+  },
+  number: {
+    type: Number,
+    required: false
   },
 });
 

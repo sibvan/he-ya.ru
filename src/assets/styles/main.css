@@ -222,6 +222,10 @@ body {
   cursor: pointer;
 }
 
+.checkbox__text_number {
+  color: var(--color-stone);
+}
+
 .checkbox__indicator {
   appearance: none;
   position: relative;
