@@ -18,7 +18,8 @@
         <p class="filters__title">Категория</p>
         <div class="filters__options">
           <BaseCheckbox v-model="selectedCategories" v-for="category in categories" :key="category._id"
-            :text="category.title" :id="category._id" :value="category.value" />
+            :text="category.title" :number="courseCountByCategory[category.value]" :id="category._id"
+            :value="category.value" />
         </div>
 
       </div>
@@ -73,7 +74,7 @@ onMounted(async () => {
 
 const coursesStore = useCoursesStore();
 const { getCategories, getCourses, assetsUrl } = coursesStore;
-const { courses, categories } = storeToRefs(coursesStore);
+const { courses, categories, courseCountByCategory } = storeToRefs(coursesStore);
 
 const route = useRoute();
 const router = useRouter();
