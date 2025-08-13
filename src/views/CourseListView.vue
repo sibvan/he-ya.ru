@@ -39,7 +39,7 @@
 
       <template v-else>
         <CourseCard v-for="course in filteredCourses" :key="course._id" :course="course" :img="getLogoUrl(course)"
-          :alt="course.title" :id="'course-' + course._id" />
+          :alt="course.title" />
       </template>
 
     </main>
