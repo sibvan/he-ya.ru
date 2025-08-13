@@ -48,9 +48,9 @@ const props = defineProps({
   }
 });
 
-const { _id, title, description, cost: { price, period } } = props.course;
+const { _id, title, description, slug:courseSlug, cost: { price, period }, school: { slug:schoolSlug } } = props.course;
 
-const courseLink = '/courses/' + _id;
+const courseLink = "/courses/" + schoolSlug + "/" + courseSlug;
 
 const truncate = (text) => text.length > 100 ? text.slice(0, 100).trim() + "…" : text;
 const formatPrice = (price) => price.toLocaleString("ru-RU");
