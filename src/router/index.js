@@ -27,6 +27,7 @@ const routes = [
     path: "/:pathMatch(.*)*",
     component: NotFoundView,
     meta: { title: "Ошибка 404. Страница не найдена" },
+    name: "404",
   },
 ];
 
