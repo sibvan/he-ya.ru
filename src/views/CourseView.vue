@@ -189,9 +189,7 @@ const bgColor = computed(() => {
 
 
 
-const course = computed(() => {
-  return coursesStore.courses.find(course => course._id === route.params.id);
-});
+const course = computed(() => coursesStore.courses.find(course => course.school.slug === route.params.school && course.slug === route.params.course));
 
 
 

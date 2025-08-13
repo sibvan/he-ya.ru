@@ -19,7 +19,7 @@ const routes = [
     name: "courses",
   },
   {
-    path: "/courses/:id",
+    path: "/courses/:school/:course",
     component: CourseView,
     name: "course",
   },
