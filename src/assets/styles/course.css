@@ -222,6 +222,10 @@
 }
 
 @media (max-width: 580.5px) {
+  .course__cost {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
   .course__school span {
     display: none;
   }
@@ -234,6 +238,7 @@
   }
   .course__description {
     font-size: 16px;
+    margin-top: 8px;
   }
   .course__price {
     font-size: 32px;
