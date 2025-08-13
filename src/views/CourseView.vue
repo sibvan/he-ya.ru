@@ -24,7 +24,7 @@
           <p class="course__period">рублей<br>за {{ course.cost.period }}</p>
         </div>
         <div v-else class="course__cost">
-   <p class="course__price">Бесплатно</p>
+          <p class="course__price">Бесплатно</p>
         </div>
         <BaseButton text="Подробнее на сайте школы" :href="course.link" />
       </div>
@@ -160,7 +160,13 @@ onMounted(async () => {
   try {
     await coursesStore.getCourses();
     await coursesStore.getCategories();
-    if (course.value) document.title = course.value.title + " — Heya!";
+    if (course.value) {
+      document.title = course.value.title + " — Heya!";
+    } else {
+      router.push({
+        name: "404", params: { pathMatch: '404' }
+      });
+    }
   } catch {
     hasError.value = true;
   } finally {
