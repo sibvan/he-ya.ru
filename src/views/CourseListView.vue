@@ -7,7 +7,7 @@
         <p v-if="isLoadingOrError" class="courses-wrapper__subtitle">{{ subtitleText }}</p>
       </div>
 
-      <button v-if="isReady" class="btn-filter" @click="toggleFilters">
+      <button v-if="isReady" :class="['btn-filter', { 'btn-filter_active': areFiltersActive }]" @click="toggleFilters">
         <img class="btn-filter__icon" :src="icons.filter" alt="Фильтр">
       </button>
     </div>
@@ -63,6 +63,7 @@ onMounted(async () => {
     await getCategories();
     if (route.query.categories) {
       selectedCategories.value = route.query.categories.split(",");
+      areFiltersActive.value = true;
     }
   } catch (e) {
     hasError.value = true;
@@ -83,6 +84,7 @@ const isLoading = ref(true);
 const hasError = ref(false);
 const areFiltersVisible = ref(false);
 const selectedCategories = ref([]);
+const areFiltersActive = ref(null);
 
 const toggleFilters = () => {
   areFiltersVisible.value = !areFiltersVisible.value;
@@ -91,8 +93,10 @@ const toggleFilters = () => {
 const changeUrl = () => {
   if (selectedCategories.value.length === 0) {
     router.push({ path: route.path });
+    areFiltersActive.value = false;
   } else {
     router.push({ path: route.path, query: { categories: selectedCategories.value.join(',') } });
+    areFiltersActive.value = true;
   }
 }
 
