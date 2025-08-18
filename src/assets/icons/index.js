@@ -1,4 +1,4 @@
-import AddIcon from "./AddIcon.svg"
+import AddIcon from "./AddIcon.svg";
 import BookmarkIcon from "./BookmarkIcon.svg";
 import RightIcon from "./RightIcon.svg";
 import BackIcon from "./BackIcon.svg";
@@ -7,6 +7,7 @@ import HalfRatingIcon from "./HalfRatingIcon.svg";
 import FullRatingIcon from "./FullRatingIcon.svg";
 import FilterIcon from "./FilterIcon.svg";
 import CloseIcon from "./CloseIcon.svg";
+import TopIcon from "./TopIcon.svg";
 
 export const icons = {
   add: AddIcon,
@@ -17,5 +18,6 @@ export const icons = {
   halfRating: HalfRatingIcon,
   fullRating: FullRatingIcon,
   filter: FilterIcon,
-  close: CloseIcon
+  close: CloseIcon,
+  top: TopIcon,
 };
