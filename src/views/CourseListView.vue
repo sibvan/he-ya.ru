@@ -1,5 +1,7 @@
 <template>
-
+  <button v-if="showBtnTop" class="btn-top" @click="scrollToTop">
+    <img class="btn-top__icon" :src="icons.top" alt="">
+  </button>
   <div class="courses-wrapper">
     <div class="courses-wrapper__title-block">
       <div>
@@ -26,6 +28,7 @@
 
     </aside>
     <main class="courses-list">
+
       <template v-if="isLoadingOrError">
         <div v-for="placeholder in 9" :key="placeholder" :class="[
           'course-card',
@@ -38,6 +41,7 @@
       </template>
 
       <template v-else>
+
         <CourseCard v-for="course in filteredCourses" :key="course._id" :course="course" :img="getLogoUrl(course)"
           :alt="course.title" />
       </template>
@@ -49,7 +53,7 @@
 import CourseCard from '../components/layout/CourseCard.vue';
 import BaseCheckbox from '../components/ui/BaseCheckbox.vue';
 
-import { useWindowSize } from '@vueuse/core'
+import { useWindowSize, useWindowScroll } from '@vueuse/core'
 import { storeToRefs } from 'pinia';
 import { useCoursesStore } from '../stores/useCoursesStore';
 import { onMounted, ref, computed, watch } from 'vue';
@@ -85,6 +89,14 @@ const hasError = ref(false);
 const areFiltersVisible = ref(false);
 const selectedCategories = ref([]);
 const areFiltersActive = ref(null);
+const showBtnTop = ref(false);
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
 
 const toggleFilters = () => {
   areFiltersVisible.value = !areFiltersVisible.value;
@@ -106,12 +118,15 @@ const getLogoUrl = (course) => {
 
 
 const { width: winWidth } = useWindowSize();
+const { y: windowScrollY } = useWindowScroll();
 
 watch(winWidth, () => {
   if (winWidth.value > 896) {
     areFiltersVisible.value = false;
   }
 });
+
+watch(windowScrollY, () => showBtnTop.value = windowScrollY.value > 0 ? true : false);
 
 
 watch(selectedCategories, () => changeUrl());
