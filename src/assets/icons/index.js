@@ -8,6 +8,7 @@ import FullRatingIcon from "./FullRatingIcon.svg";
 import FilterIcon from "./FilterIcon.svg";
 import CloseIcon from "./CloseIcon.svg";
 import TopIcon from "./TopIcon.svg";
+import BtmIcon from "./BtmIcon.svg";
 
 export const icons = {
   add: AddIcon,
@@ -20,4 +21,5 @@ export const icons = {
   filter: FilterIcon,
   close: CloseIcon,
   top: TopIcon,
+  btm: BtmIcon,
 };

@@ -17,7 +17,7 @@
 
 .course {
   background: var(--color-white);
-  box-shadow: inset 0px 0px 1000px 0px var(--color-white);
+  box-shadow: inset 0px 0px 629px 0px var(--color-white);
   border-radius: 20px;
   padding: 95px 142.5px 71px 143px;
   box-sizing: border-box;
@@ -177,7 +177,61 @@
   gap: 8px;
 }
 
+.packages {
+  margin-top: 8px;
+}
+
+.packages__item {
+  padding: 24px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  background: color-mix(in oklab, var(--color-stone) 10%, transparent);
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+
+.packages__item_visible {
+  display: flex;
+}
+
+.packages__item_show-more {
+  display: flex;
+  cursor: pointer;
+}
+
+.packages__item_show-more:hover {
+  border-color: var(--color-midnight);
+  background: transparent;
+}
+
+.packages__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.packages__title {
+  color: var(--color-stone);
+  font-family: var(--font-noto);
+  font-size: 16px;
+}
+
+.packages__description {
+  color: var(--color-midnight);
+  font-family: var(--font-noto);
+  font-size: 16px;
+  font-weight: 700;
+}
+
 @media (max-width: 1367px) {
+  .packages__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .course-wrapper {
     grid-template-columns: 2fr 1fr;
   }
@@ -192,6 +246,12 @@
 }
 
 @media (max-width: 896px) {
+  .packages__item_show-more {
+    grid-column: span 3;
+  }
+  .packages__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
   .features {
     flex-grow: 1;
   }
@@ -223,6 +283,12 @@
 }
 
 @media (max-width: 580.5px) {
+  .packages__item_show-more {
+    grid-column: span 1;
+  }
+  .packages__list {
+    grid-template-columns: repeat(1, 1fr);
+  }
   .course__cost {
     gap: 8px;
     margin-bottom: 16px;
