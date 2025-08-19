@@ -22,7 +22,7 @@
             <li :class="['packages__item', { 'packages__item_visible': index <= 2 || allPackagesAreVisible }]"
               v-for="(item, index) in course.cost.packages" :key="index">
               <p class="packages__title">{{ item.package + " " + getWordForm(+item.package, course.cost.period) }}</p>
-              <p class="packages__description">{{ formatPrice(+item.price) + " ₽" }}</p>
+              <p class="packages__description">{{ item.price ? formatPrice(+item.price) + " ₽" : "−" }}</p>
             </li>
             <li class="packages__item packages__item_show-more" v-if="!allPackagesAreVisible">
               <BaseButtonIcon @click="showAllPackages" icon="btm">Все<br>пакеты
@@ -33,7 +33,7 @@
             <li :class="['packages__item', 'packages__item_visible']" v-for="(item, index) in course.cost.packages"
               :key="index">
               <p class="packages__title">{{ item.package + " " + getWordForm(+item.package, course.cost.period) }}</p>
-              <p class="packages__description">{{ formatPrice(+item.price) + " ₽" }}</p>
+              <p class="packages__description">{{ item.price ? formatPrice(+item.price) + " ₽" : "−" }}</p>
             </li>
           </ul>
         </div>
