@@ -16,7 +16,29 @@
           <h1 class="h1">{{ course.title }}</h1>
           <p class="course__description"> {{ course.description }}</p>
         </div>
+        <div v-if="course.cost.packages?.length" class="packages">
+          <h2 class="h2">Пакеты</h2>
+          <ul class="packages__list" v-if="course.cost.packages.length > 4">
+            <li :class="['packages__item', { 'packages__item_visible': index <= 2 || allPackagesAreVisible }]"
+              v-for="(item, index) in course.cost.packages" :key="index">
+              <p class="packages__title">{{ item.package + " " + getWordForm(+item.package, course.cost.period) }}</p>
+              <p class="packages__description">{{ formatPrice(+item.price) + " ₽" }}</p>
+            </li>
+            <li class="packages__item packages__item_show-more" v-if="!allPackagesAreVisible">
+              <BaseButtonIcon @click="showAllPackages" icon="btm">Все<br>пакеты
+              </BaseButtonIcon>
+            </li>
+          </ul>
+          <ul class="packages__list" v-else>
+            <li :class="['packages__item', 'packages__item_visible']" v-for="(item, index) in course.cost.packages"
+              :key="index">
+              <p class="packages__title">{{ item.package + " " + getWordForm(+item.package, course.cost.period) }}</p>
+              <p class="packages__description">{{ formatPrice(+item.price) + " ₽" }}</p>
+            </li>
+          </ul>
+        </div>
       </div>
+
       <div class="course__btm">
         <div v-if="course.cost.price !== 0" class="course__cost">
           <p class="course__price"><span class="course__price_from">от</span> {{
@@ -53,7 +75,7 @@
           <li class="features__feature">
             <p class="features__title">Формат</p>
             <p class="features__description">{{ getFeatures(course.format)
-            }}</p>
+              }}</p>
           </li>
         </ul>
         <ul class="features__item">
@@ -69,7 +91,7 @@
             <p class="features__title">Профессия</p>
             <p class="features__description">{{
               getFeatures(course.profession)
-            }} </p>
+              }} </p>
           </li>
         </ul>
         <ul v-if="course.payment" class="features__item">
@@ -118,7 +140,7 @@ const { assetsUrl } = coursesStore;
 
 const isLoading = ref(true);
 const hasError = ref(false);
-
+const allPackagesAreVisible = ref(false);
 
 
 const getFeatures = (value) => {
@@ -129,6 +151,27 @@ const getFeatures = (value) => {
     res = value;
   }
   return makeFirstLetterCapital(res);
+}
+
+const showAllPackages = () => {
+  allPackagesAreVisible.value = true;
+}
+
+const getWordForm = (number, word) => {
+
+  const words = {
+    "урок": ['урок', 'урока', "уроков"]
+  }
+
+  if (!words[word]) return "";
+
+  const lastTwoDigits = number % 100;
+  const lastDigit = number % 10;
+
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) { return words[word][2] }
+  else if (lastDigit === 1) { return words[word][0] }
+  else if (lastDigit >= 2 && lastDigit <= 4) { return words[word][1] }
+  else { return words[word][2] }
 }
 
 const getLogoUrl = (course) => {

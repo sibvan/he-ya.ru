@@ -45,7 +45,7 @@
 .categories__card:hover {
   width: calc((100% - 24px * 11) / 4 + 48px);
   cursor: pointer;
-  background: var(--color-white);
+  background: transparent;
   border-color: var(--color-midnight);
 }
 
