@@ -160,7 +160,7 @@ const getExtraInfo = (item) => {
 const getNumberOfLessons = (item) => item.package + " " + getWordForm(+item.package, course.value.cost.period);
 
 const getPackagePrice = (item) => {
-  return item.price ? formatPrice(+item.price) + " ₽" : "−";
+  return +item.price ? formatPrice(+item.price) + " ₽" : "−";
 }
 
 const getFeatures = (value) => {
