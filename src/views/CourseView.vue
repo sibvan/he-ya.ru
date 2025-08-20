@@ -18,11 +18,12 @@
         </div>
         <div v-if="course.cost.packages?.length" class="packages">
           <h2 class="h2">Пакеты</h2>
-          <ul class="packages__list" v-if="course.cost.packages.length > 4">
-            <li :class="['packages__item', { 'packages__item_visible': index <= 2 || allPackagesAreVisible }]"
+          <ul class="packages__list" v-if="course.cost.packages.length > 3">
+            <li :class="['packages__item', { 'packages__item_visible': index <= 1 || allPackagesAreVisible }]"
               v-for="(item, index) in course.cost.packages" :key="index">
-              <p class="packages__title">{{ item.package + " " + getWordForm(+item.package, course.cost.period) }}</p>
-              <p class="packages__description">{{ item.price ? formatPrice(+item.price) + " ₽" : "−" }}</p>
+              <p class="packages__title">{{ getNumberOfLessons(item) }}<span class="packages__title_stone">{{
+                  getExtraInfo(item) }}</span></p>
+              <p class="packages__description">{{ getPackagePrice(item) }}</p>
             </li>
             <li class="packages__item packages__item_show-more" v-if="!allPackagesAreVisible">
               <BaseButtonIcon @click="showAllPackages" icon="btm">Все<br>пакеты
@@ -32,8 +33,9 @@
           <ul class="packages__list" v-else>
             <li :class="['packages__item', 'packages__item_visible']" v-for="(item, index) in course.cost.packages"
               :key="index">
-              <p class="packages__title">{{ item.package + " " + getWordForm(+item.package, course.cost.period) }}</p>
-              <p class="packages__description">{{ item.price ? formatPrice(+item.price) + " ₽" : "−" }}</p>
+              <p class="packages__title">{{ getNumberOfLessons(item) }}<span class="packages__title_stone">{{
+                  getExtraInfo(item) }}</span></p>
+              <p class="packages__description">{{ getPackagePrice(item) }}</p>
             </li>
           </ul>
         </div>
@@ -142,6 +144,18 @@ const isLoading = ref(true);
 const hasError = ref(false);
 const allPackagesAreVisible = ref(false);
 
+const getExtraInfo = (item) => {
+  if (item.time && item.level) return `  ${item.time} м · ${item.level}`;
+  else if (item.time) return `  ${item.time} м`;
+  else if (item.level) return `  ${item.level}`;
+  else return "";
+}
+
+const getNumberOfLessons = (item) => item.package + " " + getWordForm(+item.package, course.value.cost.period);
+
+const getPackagePrice = (item) => {
+  return item.price ? formatPrice(+item.price) + " ₽" : "−";
+}
 
 const getFeatures = (value) => {
   let res = "";
