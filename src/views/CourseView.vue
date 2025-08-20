@@ -25,8 +25,8 @@
                   getExtraInfo(item) }}</span></p>
               <p class="packages__description">{{ getPackagePrice(item) }}</p>
             </li>
-            <li class="packages__item packages__item_show-more" v-if="!allPackagesAreVisible">
-              <BaseButtonIcon @click="showAllPackages" icon="btm">Все<br>пакеты
+            <li @click="showAllPackages" class="packages__item packages__item_show-more" v-if="!allPackagesAreVisible">
+              <BaseButtonIcon icon="btm">Все<br>пакеты
               </BaseButtonIcon>
             </li>
           </ul>
