@@ -22,7 +22,7 @@
             <li :class="['packages__item', { 'packages__item_visible': index <= 1 || allPackagesAreVisible }]"
               v-for="(item, index) in course.cost.packages" :key="index">
               <p class="packages__title">{{ getNumberOfLessons(item) }}<span class="packages__title_stone">{{
-                  getExtraInfo(item) }}</span></p>
+                getExtraInfo(item) }}</span></p>
               <p class="packages__description">{{ getPackagePrice(item) }}</p>
             </li>
             <li @click="showAllPackages" class="packages__item packages__item_show-more" v-if="!allPackagesAreVisible">
@@ -34,7 +34,7 @@
             <li :class="['packages__item', 'packages__item_visible']" v-for="(item, index) in course.cost.packages"
               :key="index">
               <p class="packages__title">{{ getNumberOfLessons(item) }}<span class="packages__title_stone">{{
-                  getExtraInfo(item) }}</span></p>
+                getExtraInfo(item) }}</span></p>
               <p class="packages__description">{{ getPackagePrice(item) }}</p>
             </li>
           </ul>
@@ -145,10 +145,16 @@ const hasError = ref(false);
 const allPackagesAreVisible = ref(false);
 
 const getExtraInfo = (item) => {
-  if (item.time && item.level) return `  ${item.time} м · ${item.level}`;
-  else if (item.time) return `  ${item.time} м`;
-  else if (item.level) return `  ${item.level}`;
-  else return "";
+  const extraInfo = { time: item.time, level: item.level, format: item.format }
+  const parts = [];
+  for (const key in extraInfo) {
+    if (extraInfo[key]) {
+      if (key === "time") parts.push(`${extraInfo[key]} м`);
+      else parts.push(extraInfo[key]);
+    }
+  }
+
+  return parts.length ? "  " + parts.join(" · ") : "";
 }
 
 const getNumberOfLessons = (item) => item.package + " " + getWordForm(+item.package, course.value.cost.period);
