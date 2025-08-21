@@ -209,6 +209,10 @@
   gap: 8px;
 }
 
+.courses-wrapper__btn-reload {
+  margin-top: 32px;
+}
+
 .btn-filter {
   display: none;
   cursor: pointer;
