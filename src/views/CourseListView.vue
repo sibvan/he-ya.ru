@@ -7,6 +7,7 @@
       <div>
         <h1 class="h1">{{ titleText }}</h1>
         <p v-if="isLoadingOrError" class="courses-wrapper__subtitle">{{ subtitleText }}</p>
+        <BaseButton @click="loadData()" class="courses-wrapper__btn-reload" v-if="hasError" text="Перезагрузить страницу" />
       </div>
 
       <button v-if="isReady" :class="['btn-filter', { 'btn-filter_active': areFiltersActive }]" @click="toggleFilters">
@@ -51,6 +52,7 @@
 </template>
 <script setup>
 import CourseCard from '../components/layout/CourseCard.vue';
+import BaseButton from '../components/ui/BaseButton.vue';
 import BaseCheckbox from '../components/ui/BaseCheckbox.vue';
 
 import { useWindowSize, useWindowScroll } from '@vueuse/core'
@@ -62,7 +64,9 @@ import { icons } from '../assets/icons';
 import { getLogoUrl } from '../utils';
 
 
-onMounted(async () => {
+const loadData = async () => {
+  isLoading.value = true;
+  hasError.value = false;
   try {
     await getCourses();
     await getCategories();
@@ -75,6 +79,11 @@ onMounted(async () => {
   } finally {
     isLoading.value = false;
   }
+}
+
+
+onMounted(() => {
+  loadData();
 });
 
 
