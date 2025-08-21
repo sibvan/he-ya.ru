@@ -130,6 +130,7 @@ import { computed, onMounted, ref } from "vue";
 import { useCoursesStore } from "../stores/useCoursesStore";
 import { useRoute, useRouter } from 'vue-router';
 import { icons } from '../assets/icons';
+import { getWordForm } from "../utils";
 
 import BaseButton from "../components/ui/BaseButton.vue";
 import BaseButtonIcon from "../components/ui/BaseButtonIcon.vue";
@@ -177,22 +178,7 @@ const showAllPackages = () => {
   allPackagesAreVisible.value = true;
 }
 
-const getWordForm = (number, word) => {
 
-  const words = {
-    "урок": ['урок', 'урока', "уроков"]
-  }
-
-  if (!words[word]) return "";
-
-  const lastTwoDigits = number % 100;
-  const lastDigit = number % 10;
-
-  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) { return words[word][2] }
-  else if (lastDigit === 1) { return words[word][0] }
-  else if (lastDigit >= 2 && lastDigit <= 4) { return words[word][1] }
-  else { return words[word][2] }
-}
 
 const getLogoUrl = (course) => {
   return assetsUrl + (course.school.logo?.path || "");
