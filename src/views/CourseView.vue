@@ -118,6 +118,11 @@
         </div>
       </div>
 
+      <div v-if="hasError" class="course__btm">
+
+        <BaseButton text="Перезагрузить страницу" @click="loadData()" />
+      </div>
+
 
     </main>
     <aside :class="['course-aside', { 'course_loading': isLoading, 'course_error': hasError }]"></aside>
@@ -200,8 +205,9 @@ const getStarIcon = (order, grade) => {
 }
 
 
-
-onMounted(async () => {
+const loadData = async () => {
+  isLoading.value = true;
+  hasError.value = false;
   try {
     await coursesStore.getCourses();
     await coursesStore.getCategories();
@@ -217,7 +223,11 @@ onMounted(async () => {
   } finally {
     isLoading.value = false;
   }
+}
 
+
+onMounted(() => {
+  loadData();
 });
 
 const isReady = computed(() => !isLoading.value && !hasError.value);
