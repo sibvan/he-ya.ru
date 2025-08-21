@@ -6,7 +6,7 @@
         <p>английского языка</p>
       </h1>
       <ul v-if="!isLoading && !hasError" class="categories">
-        <HomeCategoryCard v-for="category in categories" :number="courseCountByCategory[category.value] + ' шт.'"
+        <HomeCategoryCard v-for="category in categories" :number="courseCountByCategory[category.value]"
           :key="category._id" :img="assetsUrl + category.image.path" :title="category.title"
           :link="{ path: '/courses', query: { categories: category.value } }" />
       </ul>

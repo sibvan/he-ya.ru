@@ -4,7 +4,7 @@
     <img class="categories__img" :src="img" :alt="title">
     <div class="categories__text">
       <p class="categories__title">{{ title }}</p>
-      <p class="categories__description">{{ number }}</p>
+      <p class="categories__description">{{ number + " " + getWordForm(number, "курс") }}</p>
     </div>
   </li>
 
@@ -13,6 +13,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
+import { getWordForm } from '../../utils';
 const router = useRouter();
 
 const props = defineProps({
