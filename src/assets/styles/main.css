@@ -154,6 +154,7 @@ body {
   display: inline-block;
   box-sizing: border-box;
   box-shadow: inset 0px 0px 0px 2px var(--color-midnight);
+  cursor: pointer;
 }
 
 .button:hover {

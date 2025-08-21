@@ -1,4 +1,5 @@
 <template>
+
   <div class="home-wrapper">
     <main class="home-main">
       <h1 class="h1 h1_home">
@@ -6,7 +7,8 @@
         <p>английского языка</p>
       </h1>
       <ul v-if="!isLoading && !hasError" class="categories">
-        <HomeCategoryCard v-for="category in categories" :number="courseCountByCategory[category.value] + ' ' + getWordForm(courseCountByCategory[category.value], 'курс')"
+        <HomeCategoryCard v-for="category in categories"
+          :number="courseCountByCategory[category.value] + ' ' + getWordForm(courseCountByCategory[category.value], 'курс')"
           :key="category._id" :img="assetsUrl + category.image.path" :title="category.title"
           :link="{ path: '/courses', query: { categories: category.value } }" />
       </ul>
@@ -19,12 +21,16 @@
           number="Перезагрузите страницу" />
       </ul>
     </main>
+
     <footer class="footer">
+
       <BaseButton v-if="!isLoading && !hasError" to="/courses" text="Все курсы" />
+      <BaseButton v-else-if="hasError" text="Перезагрузить страницу" @click="loadData()" />
       <p class="footer__text">Created by <a class="footer__link" target="_blank"
           href="https://sibvan.dev">sibvan.dev</a></p>
     </footer>
   </div>
+
 </template>
 
 <script setup>
@@ -45,7 +51,9 @@ const isLoading = ref(true);
 const hasError = ref(false);
 
 
-onMounted(async () => {
+const loadData = async () => {
+  isLoading.value = true;
+  hasError.value = false;
   try {
     await getCategories();
     await getCourses();
@@ -54,6 +62,11 @@ onMounted(async () => {
   } finally {
     isLoading.value = false;
   }
+}
+
+
+onMounted(() => {
+  loadData();
 
 });
 

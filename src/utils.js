@@ -29,3 +29,5 @@ export const getLogoUrl = (course) => {
   const coursesStore = useCoursesStore();
   return coursesStore.assetsUrl + (course.school.logo?.path || "");
 };
+
+
