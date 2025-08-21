@@ -6,7 +6,7 @@
         <p>английского языка</p>
       </h1>
       <ul v-if="!isLoading && !hasError" class="categories">
-        <HomeCategoryCard v-for="category in categories" :number="courseCountByCategory[category.value]"
+        <HomeCategoryCard v-for="category in categories" :number="courseCountByCategory[category.value] + ' ' + getWordForm(courseCountByCategory[category.value], 'курс')"
           :key="category._id" :img="assetsUrl + category.image.path" :title="category.title"
           :link="{ path: '/courses', query: { categories: category.value } }" />
       </ul>
@@ -33,6 +33,7 @@ import HomeCategoryCard from '../components/ui/HomeCategoryCard.vue';
 import { useCoursesStore } from '../stores/useCoursesStore';
 import { onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
+import { getWordForm } from "../utils";
 
 const coursesStore = useCoursesStore();
 const { categories, courseCountByCategory } = storeToRefs(coursesStore);

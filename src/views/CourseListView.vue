@@ -59,6 +59,7 @@ import { useCoursesStore } from '../stores/useCoursesStore';
 import { onMounted, ref, computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { icons } from '../assets/icons';
+import { getLogoUrl } from '../utils';
 
 
 onMounted(async () => {
@@ -112,9 +113,6 @@ const changeUrl = () => {
   }
 }
 
-const getLogoUrl = (course) => {
-  return assetsUrl + (course.school.logo?.path || "");
-}
 
 
 const { width: winWidth } = useWindowSize();
