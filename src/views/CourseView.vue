@@ -130,7 +130,7 @@ import { computed, onMounted, ref } from "vue";
 import { useCoursesStore } from "../stores/useCoursesStore";
 import { useRoute, useRouter } from 'vue-router';
 import { icons } from '../assets/icons';
-import { getWordForm } from "../utils";
+import { getWordForm, getLogoUrl } from "../utils";
 
 import BaseButton from "../components/ui/BaseButton.vue";
 import BaseButtonIcon from "../components/ui/BaseButtonIcon.vue";
@@ -179,10 +179,6 @@ const showAllPackages = () => {
 }
 
 
-
-const getLogoUrl = (course) => {
-  return assetsUrl + (course.school.logo?.path || "");
-}
 
 const makeFirstLetterCapital = (str) => {
   return str[0].toUpperCase() + str.slice(1);

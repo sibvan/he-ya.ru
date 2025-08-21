@@ -1,3 +1,5 @@
+import { useCoursesStore } from "./stores/useCoursesStore";
+
 export const getWordForm = (number, word) => {
   const words = {
     месяц: ["месяц", "месяца", "месяцев"],
@@ -21,4 +23,9 @@ export const getWordForm = (number, word) => {
   } else {
     return words[word][2];
   }
+};
+
+export const getLogoUrl = (course) => {
+  const coursesStore = useCoursesStore();
+  return coursesStore.assetsUrl + (course.school.logo?.path || "");
 };
