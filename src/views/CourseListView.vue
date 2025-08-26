@@ -134,6 +134,16 @@ watch(winWidth, () => {
 
 watch(selectedCategories, () => changeUrl());
 
+watch(areFiltersVisible, (newVal) => {
+  if (newVal) {
+    document.body.classList.add("no-scroll");
+    document.documentElement.classList.add('no-scroll');
+
+  } else {
+    document.body.classList.remove("no-scroll");
+    document.documentElement.classList.add('no-scroll');
+  }
+});
 
 const filteredCourses = computed(() => {
   if (selectedCategories.value.length === 0) {
