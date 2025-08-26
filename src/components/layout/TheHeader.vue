@@ -6,12 +6,11 @@
     </div>
     <nav>
       <ul class="menu" v-if="!homeView">
-        <li><router-link to="/courses" class="menu__item">Все курсы</router-link></li>
-        <li><router-link to="/favorite" class="menu__item">Избранное</router-link></li>
+        <li><router-link to="/courses" class="menu__item">Все курсы<Icon name="triangle" /></router-link></li>
+        <li><router-link to="/favorite" class="menu__item">Избранное<Icon name="triangle" /></router-link></li>
       </ul>
     </nav>
-    <!-- <BaseButtonIcon v-if="!homeView" icon="add">Добавить курс</BaseButtonIcon> -->
-    <BaseButtonIcon v-show="false" icon="add">Добавить курс</BaseButtonIcon>
+
   </header>
 
 </template>
@@ -20,6 +19,7 @@
 import { computed } from 'vue';
 import BaseButtonIcon from '../ui/BaseButtonIcon.vue';
 import { useRouter } from 'vue-router';
+import Icon from '../ui/Icon.vue';
 
 
 const props = defineProps({

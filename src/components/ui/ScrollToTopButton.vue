@@ -1,13 +1,13 @@
 <template>
   <button v-if="showBtnTop" class="btn-top" @click="scrollToTop">
-    <img class="btn-top__icon" :src="icons.top" alt="">
+    <Icon name="top" />
   </button>
 </template>
 
 <script setup>
 import { ref, watch } from 'vue';
 import { useWindowScroll } from '@vueuse/core';
-import { icons } from '../../assets/icons';
+import Icon from "../ui/Icon.vue";
 
 
 const showBtnTop = ref(false);

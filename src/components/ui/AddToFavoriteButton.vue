@@ -7,6 +7,7 @@
 import BaseButtonIcon from './BaseButtonIcon.vue';
 import { useCoursesStore } from '../../stores/useCoursesStore';
 
+
 const coursesStore = useCoursesStore();
 
 const props = defineProps({

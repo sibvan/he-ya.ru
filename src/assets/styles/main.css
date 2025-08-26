@@ -5,6 +5,7 @@
 @import url("course.css");
 @import url("course-list.css");
 @import url("not-found.css");
+@import url("icons.css");
 
 /* imports */
 
@@ -193,20 +194,25 @@ body {
   text-decoration: underline;
   text-decoration-color: transparent;
   transition: text-decoration-color 0.2s ease-in-out;
+  position: relative;
 }
 
 .menu__item:hover {
   text-decoration-color: currentColor;
 }
 
-.menu__item_active::after {
-  content: url(/src/assets/icons/TriangleIcon.svg);
-  display: block;
+.menu__item svg {
+  display: none;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: -16px;
+  bottom: -13.5px;
 }
+
+.menu__item_active svg {
+  display: block;
+}
+
 /* menu */
 
 /* checkbox */
@@ -234,8 +240,8 @@ body {
 }
 
 .checkbox__indicator {
+  display: block;
   appearance: none;
-  position: relative;
   width: 24px;
   height: 24px;
   margin: 0px;
@@ -246,20 +252,29 @@ body {
   outline-offset: -5px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  position: relative;
 }
 
 .checkbox__indicator:checked::after {
   content: "";
   position: absolute;
-  width: 14px;
-  height: 14px;
-  top: 0;
-  bottom: 0;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: var(--color-midnight) url("/src/assets/icons/CheckboxIcon.svg")
-    no-repeat center;
+  width: 14px;
+  height: 14px;
+  background: var(--color-midnight);
+}
+
+.checkbox__container {
+  position: relative;
+}
+
+.test {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* checkbox */
