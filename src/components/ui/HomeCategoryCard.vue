@@ -1,7 +1,8 @@
 <template>
 
   <li @click="goToAllCourses" class="categories__card">
-    <img class="categories__img" :src="img" :alt="title">
+    <img v-if="img" class="categories__img" :src="img" :alt="title">
+    <component class="categories__img" v-else-if="svg" :is="svg" />
     <div class="categories__text">
       <p class="categories__title">{{ title }}</p>
       <p class="categories__description">{{ number }}</p>
@@ -16,9 +17,13 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const props = defineProps({
+  svg: {
+    type: Object,
+    required: false
+  },
   img: {
     type: String,
-    required: true
+    required: false
   },
   title: {
     type: String,

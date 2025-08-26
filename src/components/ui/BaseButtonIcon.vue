@@ -1,6 +1,7 @@
 <template>
   <a class="button-icon">
-    <img :src="src" :alt="alt">
+    <img v-if="logo" :src="props.logo" :alt="props.logoAlt">
+    <Icon v-else-if="icon" :name="props.icon"  />
     <span>
       <slot />
     </span>
@@ -9,8 +10,9 @@
 
 <script setup>
 
-import { icons } from '../../assets/icons';
+import { icons } from '../icons';
 import { computed } from 'vue';
+import Icon from "../ui/Icon.vue"
 
 
 const props = defineProps({
@@ -29,8 +31,7 @@ const props = defineProps({
 });
 
 
-const src = computed(() => icons[props.icon] || props.logo);
-const alt = computed(() => props.icon || props.logoAlt);
+
 
 
 

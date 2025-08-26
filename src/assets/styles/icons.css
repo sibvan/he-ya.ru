@@ -1,0 +1,44 @@
+.icon_color-midnight {
+  color: var(--color-midnight);
+
+  transition: color 0.2s ease-in-out;
+}
+
+.icon_color-orange {
+  color: var(--color-orange);
+
+  transition: color 0.2s ease-in-out;
+}
+
+.icon_color-white {
+  color: var(--color-white);
+
+}
+
+.btn-top {
+  width: 48px;
+  height: 48px;
+  position: fixed;
+  right: max(12px, calc((100vw - 1710px) / 2 + 12px));
+  bottom: 12px;
+  margin-left: auto;
+  border: none;
+  background: var(--color-grey);
+  border-radius: 20px 0px 0px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease-in-out, width 0.2s ease-in-out,
+    right 0.2s ease-in-out;
+}
+
+.btn-top:hover {
+  cursor: pointer;
+  background-color: var(--color-midnight);
+  right: 0px;
+  width: calc(48px + 12px);
+}
+
+.btn-top:hover .icon_color-midnight {
+  color: var(--color-white);
+}

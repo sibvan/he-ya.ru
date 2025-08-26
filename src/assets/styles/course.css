@@ -1,8 +1,8 @@
-.button-icon_back img {
+.button-icon_back svg {
   transition: all 0.2s ease-in-out;
 }
 
-.button-icon_back:hover img {
+.button-icon_back:hover svg {
   transform: translateX(-8px);
 }
 

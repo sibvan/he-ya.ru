@@ -10,11 +10,11 @@
       </div>
 
       <button v-if="isReady" :class="['btn-filter', { 'btn-filter_active': areFiltersActive }]" @click="toggleFilters">
-        <img class="btn-filter__icon" :src="icons.filter" alt="Фильтр">
+        <Icon class="btn-filter__icon" name="filter" />
       </button>
     </div>
     <aside v-if="isReady" :class="['filters', { filters_hidden: !areFiltersVisible }]">
-      <img @click="toggleFilters" :src="icons.close" class="filters__btn-close" alt="Закрыть">
+      <Icon @click="toggleFilters" name="close" class="filters__btn-close" alt="Закрыть" />
       <h1 class="h1 filters_h1">Фильтры</h1>
       <div>
         <p class="filters__title">Категория</p>
@@ -55,13 +55,14 @@ import CourseCard from '../components/layout/CourseCard.vue';
 import BaseButton from '../components/ui/BaseButton.vue';
 import BaseCheckbox from '../components/ui/BaseCheckbox.vue';
 import ScrollToTopButton from '../components/ui/ScrollToTopButton.vue';
+import Icon from '../components/ui/Icon.vue';
 
 import { useWindowSize } from '@vueuse/core'
 import { storeToRefs } from 'pinia';
 import { useCoursesStore } from '../stores/useCoursesStore';
 import { onMounted, ref, computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { icons } from '../assets/icons';
+import { icons } from '../components/icons';
 import { getLogoUrl } from '../utils';
 
 

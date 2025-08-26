@@ -13,11 +13,11 @@
           :link="{ path: '/courses', query: { categories: category.value } }" />
       </ul>
       <ul class="categories categories_center" v-else-if="!hasError">
-        <HomeCategoryCard class="categories__card_loading" img="/loading.svg" title="Загрузка…"
+        <HomeCategoryCard class="categories__card_loading" :svg="LoadingImg" title="Загрузка…"
           number="Пожалуйста, подождите" />
       </ul>
       <ul class="categories categories_center" v-else>
-        <HomeCategoryCard img="/bug.svg" class="categories__card_error" title="Ошибка"
+        <HomeCategoryCard :svg="BugImg" class="categories__card_error" title="Ошибка"
           number="Перезагрузите страницу" />
       </ul>
     </main>
@@ -36,6 +36,9 @@
 <script setup>
 import BaseButton from '../components/ui/BaseButton.vue';
 import HomeCategoryCard from '../components/ui/HomeCategoryCard.vue';
+import LoadingImg from "../components/illustrations/LoadingImg.vue"
+import BugImg from "../components/illustrations/BugImg.vue";
+
 import { useCoursesStore } from '../stores/useCoursesStore';
 import { onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';

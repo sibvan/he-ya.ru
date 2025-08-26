@@ -58,7 +58,7 @@
       <div class="rating">
         <p class="rating__grade">{{ formatPrice(course.school.rating.grade) }}</p>
         <div class="rating__stars">
-          <img v-for="n in 5" :key="n" :src="getStarIcon(n, course.school.rating.grade)" alt="Звезда рейтинга">
+          <Icon v-for="n in 5" :key="n" :name="getStarIcon(n, course.school.rating.grade)" alt="Звезда рейтинга" />
         </div>
         <p class="rating__source">Рейтинг на сайте {{ course.school.rating.source }}</p>
       </div>
@@ -77,7 +77,7 @@
           <li class="features__feature">
             <p class="features__title">Формат</p>
             <p class="features__description">{{ getFeatures(course.format)
-            }}</p>
+              }}</p>
           </li>
         </ul>
         <ul class="features__item">
@@ -93,7 +93,7 @@
             <p class="features__title">Профессия</p>
             <p class="features__description">{{
               getFeatures(course.profession)
-            }} </p>
+              }} </p>
           </li>
         </ul>
         <ul v-if="course.payment" class="features__item">
@@ -134,18 +134,17 @@
 import { computed, onMounted, ref } from "vue";
 import { useCoursesStore } from "../stores/useCoursesStore";
 import { useRoute, useRouter } from 'vue-router';
-import { icons } from '../assets/icons';
 import { getWordForm, getLogoUrl } from "../utils";
 
 import BaseButton from "../components/ui/BaseButton.vue";
 import BaseButtonIcon from "../components/ui/BaseButtonIcon.vue";
 import AddToFavoriteButton from "../components/ui/AddToFavoriteButton.vue";
+import Icon from "../components/ui/Icon.vue";
 
 const route = useRoute();
 const router = useRouter();
 
 const coursesStore = useCoursesStore();
-const { assetsUrl } = coursesStore;
 
 const isLoading = ref(true);
 const hasError = ref(false);
@@ -198,9 +197,9 @@ const formatPrice = (price) => price.toLocaleString("ru-RU");
 
 const getStarIcon = (order, grade) => {
 
-  const ratingEmpty = icons.emptyRating;
-  const ratingHalf = icons.halfRating;
-  const ratingFull = icons.fullRating;
+  const ratingEmpty = "emptyRating";
+  const ratingHalf = "halfRating";
+  const ratingFull = "fullRating";
 
 
   if (grade <= order - 1) return ratingEmpty;

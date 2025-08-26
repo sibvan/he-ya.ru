@@ -30,7 +30,7 @@
   </div>
   <div v-else class="not-found">
     <div class="not-found__wrapper">
-      <img src="/favorite.svg" class="not-found__img" alt="404">
+      <FavoriteImg />
       <h1 class="h1 not-found__h1">Избранное</h1>
       <p class="not-found__description">Тут пока что пусто</p>
       <BaseButton class="not-found__btn" text="Перейти в каталог" to="/courses"></BaseButton>
@@ -42,7 +42,7 @@
 import ScrollToTopButton from '../components/ui/ScrollToTopButton.vue';
 import CourseCard from '../components/layout/CourseCard.vue';
 import BaseButton from '../components/ui/BaseButton.vue';
-
+import FavoriteImg from '../components/illustrations/FavoriteImg.vue';
 import { getLogoUrl } from '../utils';
 import { useCoursesStore } from '../stores/useCoursesStore';
 import { computed, ref, onMounted } from 'vue';
