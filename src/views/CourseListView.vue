@@ -141,7 +141,7 @@ watch(areFiltersVisible, (newVal) => {
 
   } else {
     document.body.classList.remove("no-scroll");
-    document.documentElement.classList.add('no-scroll');
+    document.documentElement.classList.remove('no-scroll');
   }
 });
 
