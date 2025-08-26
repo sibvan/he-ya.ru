@@ -7,7 +7,7 @@
     <nav>
       <ul class="menu" v-if="!homeView">
         <li><router-link to="/courses" class="menu__item">Все курсы</router-link></li>
-        <li v-show="false"><router-link to="" class="menu__item">Избранное</router-link></li>
+        <li><router-link to="/favorite" class="menu__item">Избранное</router-link></li>
       </ul>
     </nav>
     <!-- <BaseButtonIcon v-if="!homeView" icon="add">Добавить курс</BaseButtonIcon> -->

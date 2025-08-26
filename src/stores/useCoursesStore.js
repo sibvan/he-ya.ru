@@ -4,6 +4,9 @@ import { ref, computed } from "vue";
 export const useCoursesStore = defineStore("coursesStore", () => {
   const courses = ref([]);
   const categories = ref([]);
+  const favoriteCourses = ref(
+    JSON.parse(localStorage.getItem("favoriteCourses") || "[]")
+  );
 
   const assetsUrl = "https://s1112388.smrtp.ru/heya/storage/uploads";
 
@@ -49,13 +52,56 @@ export const useCoursesStore = defineStore("coursesStore", () => {
     }
   };
 
+  const addToFavorite = (id) => {
+    if (!favoriteCourses.value.includes(id)) favoriteCourses.value.push(id);
+    updateLocalStorage();
+  };
+
+  const removeFromFavorite = (id) => {
+    const index = favoriteCourses.value.findIndex((item) => item === id);
+    if (index !== -1) {
+      favoriteCourses.value.splice(index, 1);
+      updateLocalStorage();
+    }
+  };
+
+  const clearLocalStorage = () => {
+    favoriteCourses.value.forEach(id => {
+      if(!courses.value.find(course => course._id === id)) {
+        favoriteCourses.value = favoriteCourses.value.filter(favoriteCourseId => favoriteCourseId !== id);
+      }
+    });
+    updateLocalStorage();
+  };
+
+  const updateLocalStorage = () => {
+    localStorage.setItem(
+      "favoriteCourses",
+      JSON.stringify(favoriteCourses.value)
+    );
+  };
+
+  const isFavorite = (id) => {
+    return favoriteCourses.value.includes(id);
+  };
+
+  const favoriteNumber = computed(() => {
+    return favoriteCourses.value.length;
+  });
+
   return {
     assetsUrl,
     courses,
     categories,
     courseCountByCategory,
+    favoriteNumber,
+    favoriteCourses,
 
+    clearLocalStorage,
+    isFavorite,
     getCourses,
     getCategories,
+    addToFavorite,
+    removeFromFavorite,
   };
 });

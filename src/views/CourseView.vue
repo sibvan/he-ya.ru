@@ -8,7 +8,7 @@
           <div class="course__tags">
             <BaseButtonIcon :logoAlt="course.school.title" class="course__school" :logo="getLogoUrl(course)">{{
               course.school.title }}</BaseButtonIcon>
-            <BaseButtonIcon v-if="false" icon="bookmark">В избранное</BaseButtonIcon>
+            <AddToFavoriteButton :isFavorite="isFavorite" :id="course._id"></AddToFavoriteButton>
           </div>
 
         </div>
@@ -77,7 +77,7 @@
           <li class="features__feature">
             <p class="features__title">Формат</p>
             <p class="features__description">{{ getFeatures(course.format)
-              }}</p>
+            }}</p>
           </li>
         </ul>
         <ul class="features__item">
@@ -93,7 +93,7 @@
             <p class="features__title">Профессия</p>
             <p class="features__description">{{
               getFeatures(course.profession)
-              }} </p>
+            }} </p>
           </li>
         </ul>
         <ul v-if="course.payment" class="features__item">
@@ -139,6 +139,7 @@ import { getWordForm, getLogoUrl } from "../utils";
 
 import BaseButton from "../components/ui/BaseButton.vue";
 import BaseButtonIcon from "../components/ui/BaseButtonIcon.vue";
+import AddToFavoriteButton from "../components/ui/AddToFavoriteButton.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -149,6 +150,10 @@ const { assetsUrl } = coursesStore;
 const isLoading = ref(true);
 const hasError = ref(false);
 const allPackagesAreVisible = ref(false);
+
+const toggleFavorite = () => {
+  isFavorite.value ? coursesStore.removeFromFavorite(course.value._id) : coursesStore.addToFavorite(course.value._id);
+}
 
 const getExtraInfo = (item) => {
   const extraInfo = { time: item.time, level: item.level, format: item.format }
@@ -228,6 +233,10 @@ const loadData = async () => {
 
 onMounted(() => {
   loadData();
+});
+
+const isFavorite = computed(() => {
+  return coursesStore.isFavorite(course.value._id);
 });
 
 const isReady = computed(() => !isLoading.value && !hasError.value);

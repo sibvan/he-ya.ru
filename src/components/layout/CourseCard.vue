@@ -5,8 +5,8 @@
         <div class="course-card__img-container">
           <img class="course-card__img" :src="img" :alt="alt" />
         </div>
-        <BaseButtonIcon v-show="false" icon="bookmark">В избранное</BaseButtonIcon>
-        <!-- <BaseButtonIcon icon="bookmark">В избранное</BaseButtonIcon> -->
+
+        <AddToFavoriteButton :isFavorite="isFavorite" :id="course._id"></AddToFavoriteButton>
       </div>
       <div>
         <h2 class="h2">{{ title }}</h2>
@@ -32,6 +32,7 @@
 
 <script setup>
 import BaseButtonIcon from '../ui/BaseButtonIcon.vue';
+import AddToFavoriteButton from '../ui/AddToFavoriteButton.vue';
 
 const props = defineProps({
   course: {
@@ -45,16 +46,19 @@ const props = defineProps({
   alt: {
     type: String,
     required: true
+  },
+  isFavorite: {
+    type: Boolean,
+    required: true,
   }
 });
 
-const { _id, title, description, slug:courseSlug, cost: { price, period }, school: { slug:schoolSlug } } = props.course;
+const { _id, title, description, slug: courseSlug, cost: { price, period }, school: { slug: schoolSlug } } = props.course;
 
 const courseLink = "/courses/" + schoolSlug + "/" + courseSlug;
 
 const truncate = (text) => text.length > 100 ? text.slice(0, 100).trim() + "…" : text;
 const formatPrice = (price) => price.toLocaleString("ru-RU");
-
 
 
 </script>
