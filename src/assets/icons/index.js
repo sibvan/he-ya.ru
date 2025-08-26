@@ -9,6 +9,7 @@ import FilterIcon from "./FilterIcon.svg";
 import CloseIcon from "./CloseIcon.svg";
 import TopIcon from "./TopIcon.svg";
 import BtmIcon from "./BtmIcon.svg";
+import RedBookmarkIcon from "./RedBookmarkIcon.svg";
 
 export const icons = {
   add: AddIcon,
@@ -22,4 +23,5 @@ export const icons = {
   close: CloseIcon,
   top: TopIcon,
   btm: BtmIcon,
+  redBookmark: RedBookmarkIcon,
 };

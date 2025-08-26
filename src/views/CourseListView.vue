@@ -1,13 +1,12 @@
 <template>
-  <button v-if="showBtnTop" class="btn-top" @click="scrollToTop">
-    <img class="btn-top__icon" :src="icons.top" alt="">
-  </button>
+  <ScrollToTopButton />
   <div class="courses-wrapper">
     <div class="courses-wrapper__title-block">
       <div>
         <h1 class="h1">{{ titleText }}</h1>
         <p v-if="isLoadingOrError" class="courses-wrapper__subtitle">{{ subtitleText }}</p>
-        <BaseButton @click="loadData()" class="courses-wrapper__btn-reload" v-if="hasError" text="Перезагрузить страницу" />
+        <BaseButton @click="loadData()" class="courses-wrapper__btn-reload" v-if="hasError"
+          text="Перезагрузить страницу" />
       </div>
 
       <button v-if="isReady" :class="['btn-filter', { 'btn-filter_active': areFiltersActive }]" @click="toggleFilters">
@@ -44,7 +43,8 @@
       <template v-else>
 
         <CourseCard v-for="course in filteredCourses" :key="course._id" :course="course" :img="getLogoUrl(course)"
-          :alt="course.title" />
+          :alt="course.title" @remove-from-favorite="coursesStore.removeFromFavorite(course._id)"
+          @add-to-favorite="coursesStore.addToFavorite(course._id)" :isFavorite="coursesStore.isFavorite(course._id)" />
       </template>
 
     </main>
@@ -54,8 +54,9 @@
 import CourseCard from '../components/layout/CourseCard.vue';
 import BaseButton from '../components/ui/BaseButton.vue';
 import BaseCheckbox from '../components/ui/BaseCheckbox.vue';
+import ScrollToTopButton from '../components/ui/ScrollToTopButton.vue';
 
-import { useWindowSize, useWindowScroll } from '@vueuse/core'
+import { useWindowSize } from '@vueuse/core'
 import { storeToRefs } from 'pinia';
 import { useCoursesStore } from '../stores/useCoursesStore';
 import { onMounted, ref, computed, watch } from 'vue';
@@ -99,14 +100,9 @@ const hasError = ref(false);
 const areFiltersVisible = ref(false);
 const selectedCategories = ref([]);
 const areFiltersActive = ref(null);
-const showBtnTop = ref(false);
 
-const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
+
+
 
 const toggleFilters = () => {
   areFiltersVisible.value = !areFiltersVisible.value;
@@ -125,7 +121,7 @@ const changeUrl = () => {
 
 
 const { width: winWidth } = useWindowSize();
-const { y: windowScrollY } = useWindowScroll();
+
 
 watch(winWidth, () => {
   if (winWidth.value > 896) {
@@ -133,7 +129,7 @@ watch(winWidth, () => {
   }
 });
 
-watch(windowScrollY, () => showBtnTop.value = windowScrollY.value > 0 ? true : false);
+
 
 
 watch(selectedCategories, () => changeUrl());

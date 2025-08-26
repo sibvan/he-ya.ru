@@ -4,7 +4,7 @@ import HomeView from "../views/HomeView.vue";
 import CourseListView from "../views/CourseListView.vue";
 import CourseView from "../views/CourseView.vue";
 import NotFoundView from "../views/NotFoundView.vue";
-import { nextTick } from "vue";
+import FavoriteView from "../views/FavoriteView.vue";
 
 const routes = [
   {
@@ -29,6 +29,11 @@ const routes = [
     meta: { title: "Ошибка 404. Страница не найдена" },
     name: "404",
   },
+  {
+    path: "/favorite",
+    component: FavoriteView,
+    meta: { title: "Избранные курсы Heya!" },
+  }
 ];
 
 export const router = createRouter({
