@@ -1,11 +1,11 @@
 <template>
-  <button v-if="showBtnTop" class="btn-top" @click="scrollToTop">
+  <button :class="showBtnTopClass" class="btn-top" @click="scrollToTop">
     <Icon name="top" />
   </button>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, computed } from 'vue';
 import { useWindowScroll } from '@vueuse/core';
 import Icon from "../ui/Icon.vue";
 
@@ -20,5 +20,10 @@ const scrollToTop = () => {
 }
 
 const { y: windowScrollY } = useWindowScroll();
-watch(windowScrollY, () => showBtnTop.value = windowScrollY.value > 0 ? true : false);
+
+  const showBtnTopClass = computed(() => ({
+    'btn-top_show': windowScrollY.value > 0,
+    // 'btn-top_hide': windowScrollY.value === 0
+  }));
+
 </script>

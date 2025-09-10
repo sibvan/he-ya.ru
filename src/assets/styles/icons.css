@@ -12,7 +12,6 @@
 
 .icon_color-white {
   color: var(--color-white);
-
 }
 
 .btn-top {
@@ -29,7 +28,16 @@
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s ease-in-out, width 0.2s ease-in-out,
-    right 0.2s ease-in-out;
+    right 0.2s ease-in-out, opacity 1s ease-in-out;
+  opacity: 0;
+}
+
+.btn-top_show {
+  opacity: 1;
+}
+
+.btn-top_hide {
+  opacity: 0;
 }
 
 .btn-top:hover {
