@@ -22,8 +22,8 @@ const scrollToTop = () => {
 const { y: windowScrollY } = useWindowScroll();
 
   const showBtnTopClass = computed(() => ({
-    'btn-top_show': windowScrollY.value > 0,
-    // 'btn-top_hide': windowScrollY.value === 0
+    'btn-top_show': windowScrollY.value > 100,
+    'btn-top_hide': windowScrollY.value === 0
   }));
 
 </script>
